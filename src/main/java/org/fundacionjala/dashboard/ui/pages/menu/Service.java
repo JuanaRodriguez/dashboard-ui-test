@@ -20,6 +20,9 @@ public class Service extends AbstractBasePage {
     @FindBy(css = "div.ui.shadowless.top.sidebar.overlay.visible button.ui.right.floated.blue.submit.button")
     private WebElement saveButton;
 
+    @FindBy(name = "serverAddress")
+    private WebElement serverAddressTextField;
+
     public void selectServiceDropdown(String serviceName) {
         dropDownListOfServices.click();
         driver.findElement(By.xpath("//div[@class='menu transition visible']/div[text()='" + serviceName + "']")).click();
@@ -39,5 +42,10 @@ public class Service extends AbstractBasePage {
         saveButton.click();
         driver.navigate().refresh();
         return new Profile();
+    }
+
+    public void setServerAddressTextField(String serverAddress) {
+        serverAddressTextField.clear();
+        serverAddressTextField.sendKeys(serverAddress);
     }
 }
